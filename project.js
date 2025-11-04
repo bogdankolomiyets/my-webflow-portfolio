@@ -1,1 +1,40 @@
-function initFooterParallax(){document.querySelectorAll("[data-footer-parallax]").forEach((e=>{const r=gsap.timeline({scrollTrigger:{trigger:e,start:"clamp(top bottom)",end:"clamp(top top)",scrub:!0}}),a=e.querySelector("[data-footer-parallax-inner]"),t=e.querySelector("[data-footer-parallax-dark]");a&&r.from(a,{yPercent:-25,ease:"linear"}),t&&r.from(t,{opacity:.5,ease:"linear"},"<")}))}gsap.registerPlugin(ScrollTrigger),document.addEventListener("DOMContentLoaded",(()=>{initFooterParallax()}));
+//-------Footer Parallax
+gsap.registerPlugin(ScrollTrigger);
+
+function initFooterParallax() {
+  document.querySelectorAll("[data-footer-parallax]").forEach((el) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "clamp(top bottom)",
+        end: "clamp(top top)",
+        scrub: true,
+      },
+    });
+
+    const inner = el.querySelector("[data-footer-parallax-inner]");
+    const dark = el.querySelector("[data-footer-parallax-dark]");
+
+    if (inner) {
+      tl.from(inner, {
+        yPercent: -25,
+        ease: "linear",
+      });
+    }
+
+    if (dark) {
+      tl.from(
+        dark,
+        {
+          opacity: 0.5,
+          ease: "linear",
+        },
+        "<"
+      );
+    }
+  });
+}
+// Initialize Footer with Parallax Effect
+document.addEventListener("DOMContentLoaded", () => {
+  initFooterParallax();
+});
