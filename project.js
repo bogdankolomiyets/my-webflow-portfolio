@@ -87,3 +87,21 @@ function initFooterParallax() {
 document.addEventListener("DOMContentLoaded", () => {
   initFooterParallax();
 });
+
+// Сursor mousehover
+gsap.set(".cursor", { xPercent: 5, yPercent: 40 });
+
+let xTo = gsap.quickTo(".cursor", "x", { duration: 0.6, ease: "power3" });
+let yTo = gsap.quickTo(".cursor", "y", { duration: 0.6, ease: "power3" });
+
+document.querySelectorAll(".project_card").forEach((card) => {
+  card.addEventListener("mouseenter", (e) => {
+    xTo(e.clientX);
+    yTo(e.clientY);
+  });
+});
+
+window.addEventListener("mousemove", (e) => {
+  xTo(e.clientX);
+  yTo(e.clientY);
+});
